@@ -1,0 +1,484 @@
+@mixin pre($tag, $value) {
+  -webkit-#{$tag} : $value;
+  -moz-#{$tag} : $value;
+  -ms-#{$tag} : $value;
+  -o-#{$tag} : $value;
+  #{$tag} : $value;
+}
+
+@mixin clear() {
+  clear: both;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 0;
+  line-height: 0;
+  display: block;
+}
+
+@mixin afterClear() {
+  content: "";
+  @include clear;
+}
+
+@mixin generalbr() {
+  border-radius: 3px;
+}
+
+@mixin bigFont() {
+  font-size: 1.5rem;
+}
+
+@mixin transition($tick) {
+  @include pre(transition, #{$tick}s all linear);
+}
+
+// CSS content goes here.
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  -ms-touch-action: none;
+  margin: 0;
+  font-size: 1rem;
+  padding: 0;
+  height: 100%;
+  font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.after_clear:after {
+  @include afterClear;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+:-moz-placeholder {
+  color: #ccc;
+}
+::-moz-placeholder {
+  color: #ccc;
+}
+::-ms-placeholder {
+  color: #ccc;
+}
+::-o-placeholder {
+  color: #ccc;
+}
+
+.main {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #000;
+  color: #FFF;
+  height: 100%;
+  padding-top: 1%;
+  @include transition(0.1);
+}
+
+.header, .slide {
+  margin: 0% auto 1%;
+  width: 96%;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.667);
+  border: 1px solid #999;
+  padding: 6px 3%;
+  position: relative;
+  z-index: 2;
+  @include generalbr;
+  @include pre(box-sizing, border-box);
+}
+
+.header_title {
+  z-index: 1;
+  float: left;
+  position: relative;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 79%;
+}
+
+.header_title.hidden {
+  visibility: hidden;
+}
+
+.header_title_edit {
+  width: 79%;
+  position: absolute;
+  padding: 6px 3%;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+  height: 100%;
+  color: inherit;
+  background-color: transparent;
+  z-index: 0;
+  @include pre(box-sizing, border-box);
+}
+
+.nav {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  width: 9%;
+  @include transition(0.1);
+}
+
+.nav.hidden {
+  width: 0%;
+}
+
+.nav.active {
+  overflow: visible;
+}
+
+.nav_btn {
+  cursor: pointer;
+  min-height: 24px;
+  line-height: 24px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 1;
+  @include transition(0.1);
+}
+
+.nav_btn.back {
+  @include bigFont;
+}
+
+.nav.hidden .nav_btn {
+  border-width: 0px;
+}
+
+.nav_btn:hover, .nav_btn:active, .nav.active .nav_btn  {
+  border-color: #ccc;
+  color: #000;
+  @include generalbr;
+}
+
+.nav_btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.nav_btn:active, .nav.active .nav_btn, .nav.active .nav_btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 3px 3px 0 0;
+  border-bottom-color: #FFF;
+}
+
+.nav_btn.sort {
+  padding-right: 10px;
+}
+
+.nav_content {
+  position: absolute;
+  white-space: nowrap;
+  text-align: left;
+  right:0px;
+  white-space: nowrap;
+  background-color: #FFF;
+  color: #000;
+  border-top: 1px solid #ccc;
+  top: 100%;
+  margin-top: -1px;
+  display: none;
+}
+
+.nav.active .nav_content {
+  display: block;
+}
+
+.nav_item {
+  border: 1px solid #ccc;
+  padding: 6px;
+  border-top: 0;
+  cursor: pointer;
+  @include transition(0.1);
+}
+
+.nav_item:hover, .nav_item:active {
+  background-color: #ccc;
+}
+
+.slide, .swiper-container.slide {
+  top: 40px;
+  bottom: 0;
+  position: absolute;
+  left: 2%;
+  margin-top: 2%;
+  padding-bottom: 1%;
+  @include pre(box-sizing, border-box);
+}
+
+.msg_list {
+  overflow: auto;
+}
+
+.msg_item {
+  position: relative;
+  left: 0;
+  @include transition(0.2);
+}
+
+.msg_item.fancy {
+  left: -50%;
+  opacity: 0;
+}
+
+.swiper-container.msg_item {
+  margin-bottom: 0.5%;
+}
+
+.msg_preview {
+  padding: 6px 3%;
+  background: rgba(255, 255, 255, 0.667);
+  cursor: pointer;
+  border: 1px solid #ccc;
+  @include generalbr;
+  @include transition(0.1);
+  @include pre(box-sizing, border-box);
+}
+
+.msg_preview:hover, .msg_preview:active, .msg_preview.active {
+  background-color: rgba(255, 255, 255, 1);
+  color: #000;
+}
+
+.msg_new .msg_preview {
+  background-color: rgba(64,255,255,.667);
+  text-align: center;
+  @include bigFont;
+  @include transition(0.1);
+}
+
+.msg_new .msg_preview:hover, .msg_new .msg_preview:active, .msg_new .msg_preview.active {
+  background-color: rgba(64,255,255,1);
+  color: #FFF;
+}
+
+.msg_new .msg_preview.conflict {
+  background-color: rgba(67,255,67,.667);
+}
+
+.msg_new .msg_preview.conflict:hover, .msg_new .msg_preview.conflict:active, .msg_new .msg_preview.conflict.active {
+  background-color: rgba(67,255,67,1);
+}
+
+.msg_delete {
+  height: 100%;
+  padding-top: 12px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #F44;
+  margin-right: 1px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 49px;
+  border-radius: 0px 3px 3px 0px;
+  @include transition(0.1);
+  @include pre(box-sizing, border-box);
+  @include pre(transform, translate3d(51px,0,0));
+}
+
+.msg_delete.active {
+  z-index: 2;
+  @include pre(transform, translate3d(0,0,0));
+}
+
+.msg_title {
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.msg_title.title {
+  float: left;
+  font-weight: bold;
+}
+
+.msg_title.date {
+  float: right;
+  text-align: right;
+}
+
+.msg_pre_content {
+  clear: both;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.msg_content {
+  visibility: hidden;
+  border-right: 1px solid transparent;
+  @include pre(box-sizing, border-box);
+}
+
+.msg_content.active {
+  visibility: visible;
+}
+
+.action_btn {
+  width: 49%;
+  padding: 6px 0;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  height: 45px;
+  line-height: 45px;
+  @include bigFont;
+  @include generalbr;
+  @include transition(0.1);
+  @include pre(box-sizing, border-box);
+}
+
+.content_save {
+  background: rgba(255, 255, 255, 0.667);
+  float: left;
+}
+
+.content_save:hover, .content_save:active {
+  background: rgba(255, 255, 255, 1);
+}
+
+.content_delt {
+  background-color: rgba(255, 64, 64, 0.667);
+  float: right;
+  color: #FFF;
+}
+
+.content_delt:hover, .content_delt:active {
+  background-color: rgba(255, 64, 64, 1);
+}
+
+.content_delt.conflict {
+  background-color: rgba(255, 128, 0, 0.667);
+}
+
+.content_delt.conflict:hover, .content_delt.conflict:active {
+  background-color: rgba(255, 128, 0, 1);
+}
+
+.msg_content_edit {
+  width: 100%;
+  resize: none;
+  border-radius: 3px;
+  background-color: rgba(255,255,255,.667);
+  padding: 3%;
+  color: inherit;
+  position: absolute;
+  top: 0;
+  bottom: 52px;
+  @include transition(0.1);
+  @include pre(box-sizing, border-box);
+}
+
+.msg_actions {
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+}
+
+.color_popup {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  display: table;
+  @include pre(justify-content, center);
+  @include transition(0.1);
+}
+
+.popup_wraper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.color_popup.active {
+  visibility: visible;
+  opacity: 1;
+  z-index: 101;
+}
+
+.color_wrap {
+  width: 40%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 2%;
+  @include generalbr;
+  @include transition(0.1);
+}
+
+.color_box {
+  min-width: 48px;
+  height: 48px;
+  margin: 2%;
+  float: left;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.color_box.red {
+  background-color:#F00;
+}
+
+.color_box.orange {
+  background-color:#F90;
+}
+
+.color_box.yellow {
+  background-color:#FF0;
+}
+
+.color_box.green {
+  background-color:#0F0;
+}
+
+.color_box.cyan {
+  background-color:#0FF;
+}
+
+.color_box.blue {
+  background-color:#00F;
+}
+
+.color_box.purple {
+  background-color:#F0F;
+}
+
+.color_box.white {
+  background-color:#FFF;
+}
+
+.color_box.Black {
+  background-color:#000;
+}
+
+.color_box.random {
+  font-size: 3rem;
+  line-height: 48px;
+  text-align: center;
+}

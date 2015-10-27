@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="keyword" content="Yujia Zenefit snotepad" />
+  <meta name="description" content="A simplified notepad that recordes text messages using LocalStorage." />
+  <meta name="author" content="yarmyarch@live.cn" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="asset/css/app.css" />
+  <title>Hi Zenefit!</title>
+</head>
+<body>
+  <div class="main" id="mainWrap">
+    <header class="header after_clear">
+      <div class="header_title" id="headerTitle"></div>
+      <input class="header_title_edit" id="headerTitleEdit" placeholder="type your title here" maxlength="128"/>
+      <div class="nav">
+        <div class="nav_btn sort" id="navSort">↑↓</div>
+        <div class="nav_content">
+          <div class="nav_item" id="sortBtnContent">By Content</div>
+          <div class="nav_item" id="sortBtnDate">By Date</div>
+          <div class="nav_item" id="sortBtnTitle">By Title</div>
+          <div class="nav_item" id="sortBtnRandom">By Whatever</div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="nav_btn setting" id="navSetting">☰</div>
+        <div class="nav_content">
+          <div class="nav_item" id="navAbout">About</div>
+          <div class="nav_item" id="navSetColor">Set Bg Color</div> 
+        </div>
+      </div>
+      <div class="nav">
+        <div class="nav_btn back" id="navBack">☞</div>
+      </div>
+    </header>
+    <div class="swiper-container slide">
+      <div class="swiper-wrapper">
+      
+        <div class="swiper-slide msg_content" id="msgContentWrap">
+          <textarea class="msg_content_edit" id="msgContent" placeholder="type your content here" maxlength="512"></textarea>
+          <div class="msg_actions after_clear">
+            <div class="action_btn content_save" id="saveMessage">✔</div>
+            <div class="action_btn content_delt" id="deleteMessage">✘</div>
+          </div>
+        </div>
+        <div class="swiper-slide msg_list" id="msgList">
+          <div class="msg_item msg_new" id="newMessage">
+            <div class="msg_preview" id="newMessagePreview"><strong>✎</strong><span class="hidden">✘</span></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="popup color_popup" id="popupColor">
+    <div class="popup_wraper">
+      <div class="color_wrap after_clear" id="colorWrap"></div>
+    </div>
+  </div>
+<script src="asset/js/app.js"></script>
+</body>
+</html>
